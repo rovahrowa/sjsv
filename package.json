@@ -35,5 +35,11 @@
   "bugs": {
     "url": "https://github.com/zemuldo/sjsv/issues"
   },
-  "homepage": "https://github.com/zemuldo/sjsv#readme"
+  "homepage": "https://github.com/zemuldo/sjsv#readme",
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "eslint": "^4.19.1",
+    "eslint-plugin-import": "^2.12.0",
+    "nyc": "^11.8.0"
+  }
 }
