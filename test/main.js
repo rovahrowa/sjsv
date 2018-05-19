@@ -24,7 +24,7 @@ test('Does not throw RangeError when schema is defined', t => {
     t.deepEqual(new Main(schema).schema, schema);
 });
 
-test('Test Compile Schema', t => {
+test('Test success Compile Schema', t => {
 
     let schema = {
         properties: {
@@ -45,7 +45,7 @@ test('Test Compile Schema', t => {
     let data = {
         name: 'Danstan',
         age: 30,
-        address: 'adsaddsd'
+        address: 'asdsadsad'
     };
 
     let validator = new Main(schema);
@@ -54,10 +54,40 @@ test('Test Compile Schema', t => {
 });
 
 
-test('Test Compile Schema', t => {
+test('Test Invalid Data Type on string field', t => {
 
     let schema = {
         strict: true,
+        properties: {
+            name: {
+                type: 'string',
+                dataType: 'n',
+            },
+            username: {
+                type: 'string',
+                dataType: 'a',
+            },
+            age: {
+                type: 'number'
+            }
+        }
+    };
+
+    let data = {
+        name: 'Danstan',
+        age: 30
+    };
+
+    let validator = new Main(schema);
+
+    t.is(validator.vaildate(data), 'name can not contain only  Numbers 0-9');
+});
+
+
+test('Test Required filed', t => {
+
+    let schema = {
+        allowed: ['name','age','username'],
         properties: {
             name: {
                 type: 'string',
@@ -75,11 +105,10 @@ test('Test Compile Schema', t => {
 
     let data = {
         name: 'Danstan',
-        age: 30,
-        address: 'adsaddsd'
+        username: 'dsfsfsdf'
     };
 
     let validator = new Main(schema);
 
-    t.is(validator.vaildate(data), 'field address is not needed');
+    t.is(validator.vaildate(data), 'field age is required');
 });
