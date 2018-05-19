@@ -114,7 +114,6 @@ test('Test Invalid Type', t => {
 test('Test Invalid Data Type on string field', t => {
 
     let schema = {
-        strict: true,
         properties: {
             name: {
                 type: 'string',
