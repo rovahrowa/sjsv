@@ -1,1 +1,1 @@
-# js_validator
+# simple-json-schema-validator
