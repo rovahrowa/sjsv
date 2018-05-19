@@ -49,6 +49,7 @@ test('Test success Validate Schema', t => {
     let validator = new Main(schema);
 
     t.is(validator.vaildate(data), true);
+    t.is(validator.getErrors(data), 'No Errors');
 });
 
 test('Test Invalid Data Type', t => {
@@ -78,6 +79,7 @@ test('Test Invalid Data Type', t => {
     let validator = new Main(schema);
 
     t.is(validator.vaildate(data), 'field age must be of type number');
+    t.is(validator.getErrors(data), 'field age must be of type number');
 });
 
 test('Test Invalid Type', t => {
