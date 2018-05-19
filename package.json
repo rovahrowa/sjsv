@@ -1,6 +1,6 @@
 {
   "name": "sjsv",
-  "version": "0.0.1",
+  "version": "0.0.1-rc1",
   "description": "Simple JSON Schema validator. Simple, easy and super fast",
   "main": "index.js",
   "scripts": {
