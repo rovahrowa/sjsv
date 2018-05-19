@@ -32,6 +32,10 @@ test('Test Compile Schema', t => {
                 type: 'string',
                 dataType: 'a',
             },
+            username: {
+                type: 'string',
+                dataType: 'a',
+            },
             age: {
                 type: 'number'
             }
@@ -40,10 +44,42 @@ test('Test Compile Schema', t => {
 
     let data = {
         name: 'Danstan',
-        age: 30
+        age: 30,
+        address: 'adsaddsd'
     };
 
     let validator = new Main(schema);
 
     t.is(validator.vaildate(data), true);
+});
+
+
+test('Test Compile Schema', t => {
+
+    let schema = {
+        strict: true,
+        properties: {
+            name: {
+                type: 'string',
+                dataType: 'a',
+            },
+            username: {
+                type: 'string',
+                dataType: 'a',
+            },
+            age: {
+                type: 'number'
+            }
+        }
+    };
+
+    let data = {
+        name: 'Danstan',
+        age: 30,
+        address: 'adsaddsd'
+    };
+
+    let validator = new Main(schema);
+
+    t.is(validator.vaildate(data), 'field address is not needed');
 });
