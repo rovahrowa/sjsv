@@ -1,0 +1,27 @@
+{
+  "name": "sjsv",
+  "version": "0.0.1",
+  "description": "Simple JSON Schema validator. Simple, easy and super fast",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/zemuldo/sjsv.git"
+  },
+  "keywords": [
+    "json",
+    "jso-schema-validator",
+    "validator",
+    "schema",
+    "sjsv",
+    "zemuldo"
+  ],
+  "author": "Danstan Otieno Onyango",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zemuldo/sjsv/issues"
+  },
+  "homepage": "https://github.com/zemuldo/sjsv#readme"
+}
