@@ -4,9 +4,7 @@ import Main from '../lib/main.js';
 /*
 Test Case Undefined or Null Schema
 */
-const fn = () => {
-    throw new Main();
-};
+
 test('Throw RangeError when schema is undefined or null', t => {
     const error = t.throws(() => {
         new Main();
@@ -24,7 +22,7 @@ test('Does not throw RangeError when schema is defined', t => {
     t.deepEqual(new Main(schema).schema, schema);
 });
 
-test('Test success Compile Schema', t => {
+test('Test success Validate Schema', t => {
 
     let schema = {
         properties: {
@@ -53,6 +51,63 @@ test('Test success Compile Schema', t => {
     t.is(validator.vaildate(data), true);
 });
 
+test('Test Invalid Data Type', t => {
+
+    let schema = {
+        properties: {
+            name: {
+                type: 'string',
+                dataType: 'a',
+            },
+            username: {
+                type: 'string',
+                dataType: 'a',
+            },
+            age: {
+                type: 'number'
+            }
+        }
+    };
+
+    let data = {
+        name: 'Danstan',
+        age: '30',
+        address: 'asdsadsad'
+    };
+
+    let validator = new Main(schema);
+
+    t.is(validator.vaildate(data), 'field age must be of type number');
+});
+
+test('Test Invalid Type', t => {
+
+    let schema = {
+        properties: {
+            name: {
+                type: 'string',
+                dataType: 'a',
+            },
+            username: {
+                type: 'string',
+                dataType: 'a',
+            },
+            age: {
+                type: 'number'
+            }
+        }
+    };
+
+    let data = {
+        name: 'Danstan56',
+        age: 30,
+        address: 'asdsadsad'
+    };
+
+    let validator = new Main(schema);
+
+    t.is(validator.vaildate(data), 'name can not contain only  Letters a-z');
+});
 
 test('Test Invalid Data Type on string field', t => {
 
@@ -84,7 +139,7 @@ test('Test Invalid Data Type on string field', t => {
 });
 
 
-test('Test Required filed', t => {
+test('Test required field, Age is missing in the data, should return error age is required', t => {
 
     let schema = {
         allowed: ['name','age','username'],
@@ -111,4 +166,36 @@ test('Test Required filed', t => {
     let validator = new Main(schema);
 
     t.is(validator.vaildate(data), 'field age is required');
+});
+
+
+test('Test unwanted field, Age is missing in the data, should return error age is required', t => {
+
+    let schema = {
+        allowed: ['name','age','username'],
+        properties: {
+            name: {
+                type: 'string',
+                dataType: 'a',
+            },
+            username: {
+                type: 'string',
+                dataType: 'a',
+            },
+            age: {
+                type: 'number'
+            }
+        }
+    };
+
+    let data = {
+        name: 'Danstan',
+        username: 'dsfsfsdf',
+        age: 59,
+        address: 'ssdsddsd'
+    };
+
+    let validator = new Main(schema);
+
+    t.is(validator.vaildate(data), 'field address is not needed');
 });
