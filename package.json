@@ -4,7 +4,19 @@
   "description": "Simple JSON Schema validator. Simple, easy and super fast",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "eslint --fix lib/*.js test/** && nyc --reporter=html --reporter=lcov ava"
+  },
+  "ava": {
+    "files": [
+      "test/*.js"
+    ],
+    "source": [
+      "lib/**/*.{js}"
+    ],
+    "concurrency": 5,
+    "failFast": true,
+    "failWithoutAssertions": false,
+    "powerAssert": false
   },
   "repository": {
     "type": "git",
